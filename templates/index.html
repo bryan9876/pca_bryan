@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PCA con Flask</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f9;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="number"] {
+            padding: 8px;
+            margin-right: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
+        button {
+            padding: 8px 15px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        img {
+            max-width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>PCA - Análisis de Componentes Principales</h1>
+        <form action="/process" method="POST">
+            <label for="n_componentes">Número de Componentes Principales:</label>
+            <input type="number" id="n_componentes" name="n_componentes" value="2" min="1" max="4" required>
+            <button type="submit">Procesar</button>
+        </form>
+
+        {% if plot_url %}
+        <h2>Gráfica de Componentes Principales</h2>
+        <img src="data:image/png;base64,{{ plot_url }}" alt="Gráfico de PCA">
+        {% endif %}
+    </div>
+</body>
+</html>
